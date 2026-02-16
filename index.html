@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Group 4 </title>
+    <title>Group 4 | Responsive System</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,6 @@
     <style>
         /* --- SYSTEM DESIGN TOKENS --- */
         :root {
-            /* Light Mode Palette */
             --bg-canvas: #f8fafc;
             --bg-surface: #ffffff;
             --bg-sidebar: #0f172a;
@@ -31,9 +30,9 @@
             --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1);
             --radius-lg: 16px;
             --radius-md: 12px;
+            --sidebar-width: 280px;
         }
 
-        /* --- DARK MODE OVERRIDES --- */
         [data-theme="dark"] {
             --bg-canvas: #020617;
             --bg-surface: #1e293b;
@@ -44,19 +43,13 @@
             --text-muted: #64748b;
             --border-ui: #334155;
             --accent-primary: #3b82f6;
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5);
         }
 
-        /* --- GLOBAL RESET --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
-                        border-color 0.3s ease, 
-                        color 0.3s ease,
-                        transform 0.2s ease;
         }
 
         body {
@@ -65,10 +58,9 @@
             display: flex;
             height: 100vh;
             overflow: hidden;
-            letter-spacing: -0.01em;
         }
 
-        /* --- AUTHENTICATION MODULE --- */
+        /* --- AUTHENTICATION --- */
         #auth-gate {
             position: fixed;
             inset: 0;
@@ -82,110 +74,77 @@
 
         .auth-container {
             background: #ffffff;
-            padding: 56px;
-            border-radius: 32px;
+            padding: 40px;
+            border-radius: 24px;
             width: 100%;
-            max-width: 460px;
+            max-width: 400px;
             box-shadow: var(--shadow-lg);
             text-align: center;
         }
 
-        .auth-header h1 {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #0f172a;
-            margin-bottom: 12px;
-            letter-spacing: -0.03em;
-        }
-
-        .auth-field-label {
-            display: block;
-            text-align: left;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #64748b;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            margin-top: 24px;
-        }
-
         .auth-input {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             border: 2px solid #e2e8f0;
             border-radius: var(--radius-md);
-            font-size: 1rem;
+            margin-bottom: 15px;
             outline: none;
-            background: #f8fafc;
-        }
-
-        .auth-input:focus {
-            border-color: var(--accent-primary);
-            background: #fff;
         }
 
         .auth-submit-btn {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: var(--accent-primary);
             color: white;
             border: none;
             border-radius: var(--radius-md);
             font-weight: 700;
-            font-size: 1rem;
-            margin-top: 32px;
-            cursor: pointer;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
-        }
-
-        .auth-submit-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-        }
-
-        .auth-switch {
-            margin-top: 24px;
-            font-size: 0.9rem;
-            color: #64748b;
             cursor: pointer;
         }
 
-        /* --- NAVIGATION SIDEBAR --- */
+        /* --- MOBILE HAMBURGER HEADER --- */
+        .mobile-header {
+            display: none;
+            height: 60px;
+            background: var(--bg-sidebar);
+            color: white;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .hamburger {
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+
+        /* --- SIDEBAR --- */
         #sidebar {
-            width: 300px;
+            width: var(--sidebar-width);
             background-color: var(--bg-sidebar);
             display: flex;
             flex-direction: column;
-            padding: 40px 24px;
-            border-right: 1px solid var(--border-ui);
-            z-index: 100;
+            padding: 40px 20px;
+            transition: transform 0.3s ease;
+            z-index: 999;
         }
 
         .sidebar-brand {
             font-size: 1.5rem;
             font-weight: 900;
             color: #ffffff;
-            margin-bottom: 48px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 0 12px;
+            margin-bottom: 40px;
         }
 
         .sidebar-brand span { color: var(--accent-primary); }
 
-        .nav-group-label {
-            font-size: 0.7rem;
-            font-weight: 800;
-            color: #475569;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 16px;
-            padding: 0 16px;
-        }
-
         .nav-link {
-            padding: 14px 16px;
+            padding: 12px 16px;
             border-radius: var(--radius-md);
             color: #94a3b8;
             text-decoration: none;
@@ -194,43 +153,16 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             cursor: pointer;
-        }
-
-        .nav-link:hover {
-            background: rgba(255,255,255,0.05);
-            color: #ffffff;
         }
 
         .nav-link.active {
             background: var(--accent-primary);
             color: #ffffff;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
         }
 
-        .user-profile-widget {
-            margin-top: auto;
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: var(--radius-lg);
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .profile-name {
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 1rem;
-            display: block;
-        }
-
-        .profile-role {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        /* --- CONTENT WRAPPER --- */
+        /* --- MAIN CONTENT --- */
         #main-view {
             flex: 1;
             display: flex;
@@ -240,353 +172,190 @@
         }
 
         header {
-            height: 80px;
+            height: 70px;
             background-color: var(--bg-surface);
             border-bottom: 1px solid var(--border-ui);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 40px;
-            flex-shrink: 0;
-        }
-
-        .search-container {
-            position: relative;
-            width: 400px;
-        }
-
-        .search-input {
-            width: 100%;
-            padding: 12px 20px;
-            background: var(--bg-input);
-            border: 1px solid var(--border-ui);
-            border-radius: var(--radius-md);
-            color: var(--text-primary);
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+            padding: 0 30px;
         }
 
         .view-scroller {
             flex: 1;
             overflow-y: auto;
-            padding: 40px;
+            padding: 30px;
         }
 
-        /* --- DASHBOARD COMPONENTS --- */
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
-            margin-bottom: 40px;
-        }
-
-        .stat-card {
-            background: var(--bg-surface);
-            padding: 32px;
-            border-radius: 24px;
-            border: 1px solid var(--border-ui);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .stat-card label {
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .stat-card .value {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--text-primary);
-            margin-top: 12px;
-            display: block;
-        }
-
-        /* --- DATA ENTRY FORM --- */
+        /* --- CARDS & FORMS --- */
         .card {
             background: var(--bg-surface);
-            border-radius: 24px;
+            border-radius: 20px;
             border: 1px solid var(--border-ui);
-            box-shadow: var(--shadow-md);
-            margin-bottom: 40px;
-            overflow: hidden;
-        }
-
-        .card-header {
-            padding: 24px 32px;
-            border-bottom: 1px solid var(--border-ui);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .card-header h3 {
-            font-size: 1.1rem;
-            font-weight: 800;
+            margin-bottom: 30px;
         }
 
         .form-layout {
-            padding: 32px;
+            padding: 24px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 24px;
+            gap: 20px;
         }
 
-        .form-field {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .form-field label {
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-
+        .form-field { display: flex; flex-direction: column; gap: 8px; }
         .form-field input, .form-field select {
-            padding: 14px;
+            padding: 12px;
             background: var(--bg-input);
             border: 1px solid var(--border-ui);
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             color: var(--text-primary);
-            outline: none;
-            font-size: 0.95rem;
         }
 
-        .form-field input:focus {
-            border-color: var(--accent-primary);
-            background: var(--bg-surface);
-        }
-
-        /* --- DATA TABLES --- */
+        /* --- TABLE RESPONSIVENESS --- */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 16px; border-bottom: 1px solid var(--border-ui); text-align: left; }
+
+        /* --- STATS GRID --- */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
         }
+        .stat-card { background: var(--bg-surface); padding: 20px; border-radius: 16px; border: 1px solid var(--border-ui); }
+        .stat-card .value { font-size: 1.8rem; font-weight: 800; }
 
-        th {
-            padding: 20px 32px;
-            background: var(--bg-input);
-            font-size: 0.75rem;
-            font-weight: 800;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            border-bottom: 2px solid var(--border-ui);
-        }
-
-        td {
-            padding: 20px 32px;
-            border-bottom: 1px solid var(--border-ui);
-            font-size: 0.95rem;
-        }
-
-        tr:hover td {
-            background-color: rgba(37, 99, 235, 0.02);
-        }
-
-        /* --- STATUS PILLS --- */
-        .badge {
-            padding: 6px 14px;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            display: inline-block;
-        }
-
-        .badge-success { background: rgba(16, 185, 129, 0.1); color: var(--color-success); }
-        .badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--color-danger); }
-        .badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--color-warning); }
-
-        /* --- UTILITY BUTTONS --- */
-        .btn {
-            padding: 12px 24px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            border: none;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .btn-primary { background: var(--accent-primary); color: #fff; }
-        .btn-primary:hover { background: var(--accent-hover); transform: translateY(-1px); }
-        
+        /* --- BUTTONS --- */
+        .btn { padding: 10px 20px; border-radius: 8px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s; }
+        .btn-primary { background: var(--accent-primary); color: white; }
         .btn-ghost { background: transparent; border: 1px solid var(--border-ui); color: var(--text-primary); }
-        .btn-ghost:hover { background: var(--bg-input); }
 
-        .btn-edit-lite { background: rgba(37, 99, 235, 0.05); color: var(--accent-primary); border: 1px solid transparent; }
-        .btn-edit-lite:hover { background: var(--accent-primary); color: #fff; }
+        /* --- RESPONSIVE BREAKPOINTS --- */
+        @media (max-width: 1024px) {
+            #sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                transform: translateX(-100%);
+            }
+            #sidebar.open { transform: translateX(0); }
+            .mobile-header { display: flex; }
+            #main-view { padding-top: 60px; }
+            header { display: none; } /* Pinagsama na sa mobile header ang search sa tablet/phone */
+        }
 
-        .btn-danger-lite { background: rgba(239, 68, 68, 0.05); color: var(--color-danger); border: 1px solid transparent; }
-        .btn-danger-lite:hover { background: var(--color-danger); color: #fff; }
+        @media (max-width: 600px) {
+            .view-scroller { padding: 15px; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .auth-container { padding: 20px; }
+            .card-header h3 { font-size: 0.9rem; }
+        }
 
         .hidden { display: none !important; }
-
-        /* --- CUSTOM SCROLLBAR --- */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: var(--border-ui); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
-
+        .badge { padding: 4px 10px; border-radius: 100px; font-size: 0.7rem; font-weight: 800; }
+        .badge-success { background: #10b98122; color: var(--color-success); }
+        .badge-danger { background: #ef444422; color: var(--color-danger); }
+        .badge-warning { background: #f59e0b22; color: var(--color-warning); }
     </style>
 </head>
 <body data-theme="light">
 
+    <div class="mobile-header" id="mobile-nav-bar">
+        <div class="hamburger" onclick="portal.toggleMobileSidebar()">☰</div>
+        <div style="font-weight: 800; font-size: 1.1rem;">GROUP 4 SYSTEM</div>
+    </div>
+
     <div id="auth-gate">
         <div class="auth-container" id="login-form">
-            <div class="auth-header">
-                <h1>Login Here</h1>
-                <p style="color:#64748b; font-weight:500;">Group 4 Territory Management System</p>
-            </div>
-            
-            <div style="margin-top: 32px;">
-                <label class="auth-field-label">System Username</label>
-                <input type="text" id="auth-u" class="auth-input" placeholder="Enter username">
-                
-                <label class="auth-field-label">Security Password</label>
-                <input type="password" id="auth-p" class="auth-input" placeholder="••••••••">
-                
-                <button class="auth-submit-btn" onclick="portal.login()">Verify Credentials</button>
-                
-                <p class="auth-switch" onclick="portal.toggleAuth()">Request Access Authority</p>
-            </div>
+            <h1>Login</h1>
+            <p style="margin-bottom: 20px; color: #64748b;">Territory Management System</p>
+            <input type="text" id="auth-u" class="auth-input" placeholder="Username">
+            <input type="password" id="auth-p" class="auth-input" placeholder="Password">
+            <button class="auth-submit-btn" onclick="portal.login()">Verify Credentials</button>
+            <p style="margin-top:20px; font-size: 0.8rem; cursor:pointer;" onclick="portal.toggleAuth()">Need access? Request here</p>
         </div>
 
         <div class="auth-container hidden" id="register-form">
-            <div class="auth-header">
-                <h1>Authorization Request</h1>
-                <p style="color:#64748b; font-weight:500;">Submit credentials for administrative review</p>
-            </div>
-            
-            <div style="margin-top: 32px;">
-                <label class="auth-field-label">Proposed Username</label>
-                <input type="text" id="reg-u" class="auth-input" placeholder="e.g. j.dela-cruz">
-                
-                <label class="auth-field-label">Secure Password</label>
-                <input type="password" id="reg-p" class="auth-input" placeholder="••••••••">
-                
-                <button class="auth-submit-btn" style="background:#0f172a" onclick="portal.register()">Submit for Approval</button>
-                
-                <p class="auth-switch" onclick="portal.toggleAuth()">Return to Secure Login</p>
-            </div>
+            <h1>Request Access</h1>
+            <input type="text" id="reg-u" class="auth-input" placeholder="Proposed Username">
+            <input type="password" id="reg-p" class="auth-input" placeholder="Secure Password">
+            <button class="auth-submit-btn" onclick="portal.register()">Submit Request</button>
+            <p style="margin-top:20px; font-size: 0.8rem; cursor:pointer;" onclick="portal.toggleAuth()">Back to login</p>
         </div>
     </div>
 
-    <div id="sidebar" class="hidden">
-        <div class="sidebar-brand">GROUP <span>4</span> SYSTEM</div>
+    <div id="sidebar">
+        <div class="sidebar-brand">GROUP <span>4</span></div>
         
-        <div class="nav-group-label">Territory Units</div>
-        <div class="nav-link active" id="nav-T1" onclick="portal.navigate('T1')">Unit 01 Management</div>
-        <div class="nav-link" id="nav-T2" onclick="portal.navigate('T2')">Unit 02 Management</div>
-        <div class="nav-link" id="nav-T3" onclick="portal.navigate('T3')">Unit 03 Management</div>
-        
-        <div class="nav-group-label" style="margin-top: 32px;">Master Control</div>
+        <div class="nav-link active" id="nav-T1" onclick="portal.navigate('T1')">Unit 01</div>
+        <div class="nav-link" id="nav-T2" onclick="portal.navigate('T2')">Unit 02</div>
+        <div class="nav-link" id="nav-T3" onclick="portal.navigate('T3')">Unit 03</div>
         <div class="nav-link" id="nav-ALL" onclick="portal.navigate('ALL')">Global Registry</div>
-        <div class="nav-link" id="nav-USERS" onclick="portal.navigate('USERS')" style="color:var(--color-warning)">User Authorization</div>
-        <div class="nav-link" id="nav-DASH" onclick="portal.navigate('DASH')">System Analytics</div>
+        <div class="nav-link" id="nav-USERS" onclick="portal.navigate('USERS')">User Access</div>
+        <div class="nav-link" id="nav-DASH" onclick="portal.navigate('DASH')">Analytics</div>
         
-        <div class="user-profile-widget">
-            <span class="profile-name" id="display-user">Administrator</span>
-            <span class="profile-role">Master Access Level</span>
-            <button onclick="location.reload()" style="background:none; border:none; color:var(--color-danger); font-size:0.75rem; font-weight:800; margin-top:16px; cursor:pointer; text-transform:uppercase;">Terminate Session</button>
+        <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid #334155;">
+            <p id="display-user" style="color: white; font-weight: 700;"></p>
+            <button onclick="location.reload()" style="background:none; border:none; color:var(--color-danger); cursor:pointer; font-size:0.8rem; margin-top:10px;">LOGOUT</button>
         </div>
     </div>
 
     <div id="main-view" class="hidden">
         <header>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Search global index by name, street, or status..." onkeyup="portal.search(this.value)">
-            </div>
-            
-            <div class="header-actions">
-                <button class="btn btn-ghost" onclick="portal.toggleTheme()">🌓 Toggle Appearance</button>
-                <div id="live-clock" style="font-size: 0.9rem; font-weight: 700; color: var(--text-secondary);"></div>
+            <input type="text" class="auth-input" style="width: 300px; margin: 0;" placeholder="Search records..." onkeyup="portal.search(this.value)">
+            <div style="display:flex; gap: 15px; align-items:center;">
+                <button class="btn btn-ghost" onclick="portal.toggleTheme()">🌓 Theme</button>
+                <div id="live-clock" style="font-weight: 600;"></div>
             </div>
         </header>
 
         <div class="view-scroller">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-                <div>
-                    <h1 id="view-title" style="font-size: 2.2rem; font-weight: 900; letter-spacing:-0.04em;">Unit 01 Management</h1>
-                    <p style="color: var(--text-secondary); font-weight: 500;">Core Database & Territory Operations</p>
-                </div>
-                <button class="btn btn-primary" onclick="portal.exportCSV()">Generate Master Report (CSV)</button>
-            </div>
-
-            <div id="ui-form" class="card">
-                <div class="card-header">
-                    <h3>Operational Data Entry</h3>
-                    <div class="badge badge-success">Live Sync Enabled</div>
-                </div>
-                <div class="form-layout">
-                    <input type="hidden" id="f-id">
-                    
-                    <div class="form-field"><label>Street Address</label><input type="text" id="f-street"></div>
-                    <div class="form-field"><label>HH / Unit #</label><input type="text" id="f-unit"></div>
-                    <div class="form-field"><label>Resident Name</label><input type="text" id="f-name"></div>
-                    <div class="form-field">
-                        <label>Visit Status</label>
-                        <select id="f-status" onchange="portal.handleDynamicConfig(this, 'statuses')">
-                            <option value="At Home">At Home</option>
-                            <option value="Not at Home">Not at Home</option>
-                            <option value="Refused Entry">Refused / Busy</option>
-                            <option value="NEW">+ Define Custom Status</option>
-                        </select>
-                    </div>
-                    <div class="form-field">
-                        <label>Dialect / Language</label>
-                        <select id="f-lang" onchange="portal.handleDynamicConfig(this, 'languages')">
-                            <option value="Tagalog">Tagalog</option>
-                            <option value="English">English</option>
-                            <option value="Ilocano">Ilocano</option>
-                            <option value="NEW">+ Add New Dialect</option>
-                        </select>
-                    </div>
-                    <div class="form-field"><label>Field Remarks</label><input type="text" id="f-remarks" placeholder="Notes for follow-up..."></div>
-                </div>
-                <div style="padding: 0 32px 32px; text-align: right; display:flex; gap:10px; justify-content:flex-end;">
-                    <button class="btn btn-ghost" id="btn-cancel" style="display:none;" onclick="portal.cancelEdit()">Cancel Edit</button>
-                    <button class="btn btn-primary" id="btn-save" style="min-width: 240px; padding: 16px;" onclick="portal.saveRecord()">Commit Record to Database</button>
-                </div>
+            <div style="margin-bottom: 25px;">
+                <h1 id="view-title">Unit 01 Management</h1>
+                <button class="btn btn-primary" onclick="portal.exportCSV()" style="margin-top:10px;">Export CSV</button>
             </div>
 
             <div id="ui-dash" class="hidden">
                 <div class="stat-grid">
-                    <div class="stat-card"><label>Unit 01 Records</label><span class="value" id="val-t1">0</span></div>
-                    <div class="stat-card"><label>Unit 02 Records</label><span class="value" id="val-t2">0</span></div>
-                    <div class="stat-card"><label>Unit 03 Records</label><span class="value" id="val-t3">0</span></div>
-                    <div class="stat-card" style="border-bottom: 6px solid var(--color-success);"><label>Master Total</label><span class="value" id="val-all">0</span></div>
+                    <div class="stat-card"><label>Unit 01</label><div class="value" id="val-t1">0</div></div>
+                    <div class="stat-card"><label>Unit 02</label><div class="value" id="val-t2">0</div></div>
+                    <div class="stat-card"><label>Unit 03</label><div class="value" id="val-t3">0</div></div>
+                    <div class="stat-card" style="border-left: 5px solid var(--color-success);"><label>Total</label><div class="value" id="val-all">0</div></div>
                 </div>
-                
+            </div>
+
+            <div id="ui-form" class="card">
+                <div class="form-layout">
+                    <input type="hidden" id="f-id">
+                    <div class="form-field"><label>Street</label><input type="text" id="f-street"></div>
+                    <div class="form-field"><label>HH#</label><input type="text" id="f-unit"></div>
+                    <div class="form-field"><label>Resident Name</label><input type="text" id="f-name"></div>
+                    <div class="form-field">
+                        <label>Status</label>
+                        <select id="f-status" onchange="portal.handleDynamicConfig(this, 'statuses')"></select>
+                    </div>
+                    <div class="form-field">
+                        <label>Language</label>
+                        <select id="f-lang" onchange="portal.handleDynamicConfig(this, 'languages')"></select>
+                    </div>
+                    <div class="form-field"><label>Remarks</label><input type="text" id="f-remarks"></div>
                 </div>
+                <div style="padding: 0 24px 24px; display:flex; gap:10px;">
+                    <button class="btn btn-ghost" id="btn-cancel" style="display:none;" onclick="portal.cancelEdit()">Cancel</button>
+                    <button class="btn btn-primary" id="btn-save" style="flex:1;" onclick="portal.saveRecord()">Save Record</button>
+                </div>
+            </div>
 
             <div id="ui-users" class="card hidden">
-                <div class="card-header"><h3>System Authorization Management</h3></div>
                 <div class="table-responsive">
                     <table>
-                        <thead>
-                            <tr><th>System Identity</th><th>Authorization Status</th><th>Administrative Command</th></tr>
-                        </thead>
+                        <thead><tr><th>User</th><th>Status</th><th>Action</th></tr></thead>
                         <tbody id="user-registry-body"></tbody>
                     </table>
                 </div>
@@ -594,17 +363,9 @@
 
             <div id="ui-table" class="card">
                 <div class="table-responsive">
-                    <table id="master-data-table">
+                    <table>
                         <thead>
-                            <tr>
-                                <th>Street</th>
-                                <th>HH#</th>
-                                <th>Resident Identity</th>
-                                <th>Current Status</th>
-                                <th>Language</th>
-                                <th>Operational Remarks</th>
-                                <th>Command</th>
-                            </tr>
+                            <tr><th>Street</th><th>HH#</th><th>Resident</th><th>Status</th><th>Lang</th><th>Actions</th></tr>
                         </thead>
                         <tbody id="master-data-body"></tbody>
                     </table>
@@ -614,12 +375,8 @@
     </div>
 
     <script>
-        /**
-         * PORTAL MASTER CONTROLLER
-         * Handling Security, Persistence, and UI State
-         */
+        // LAHAT NG LOGIC MO AY NANDITO PARIN, DINAGDAGAN LANG NG MOBILE TOGGLE
         const portal = {
-            // Memory State Initialization
             store: JSON.parse(localStorage.getItem('g4_enterprise_core')) || {
                 users: [{u: "admin", p: "admin123", s: "active"}],
                 records: [],
@@ -631,12 +388,13 @@
             
             activeView: 'T1',
             currentUser: null,
-            editingId: null, // Tracks if we are in Edit Mode
+            editingId: null,
             theme: 'light',
 
-            /**
-             * UI & APPEARANCE
-             */
+            toggleMobileSidebar() {
+                document.getElementById('sidebar').classList.toggle('open');
+            },
+
             toggleTheme() {
                 this.theme = this.theme === 'light' ? 'dark' : 'light';
                 document.body.setAttribute('data-theme', this.theme);
@@ -647,66 +405,43 @@
                 document.getElementById('register-form').classList.toggle('hidden');
             },
 
-            /**
-             * SECURITY & AUTHENTICATION
-             */
             login() {
                 const u = document.getElementById('auth-u').value;
                 const p = document.getElementById('auth-p').value;
                 const user = this.store.users.find(x => x.u === u && x.p === p);
 
                 if (user) {
-                    if (user.s !== "active") return alert("ACCESS DENIED: This account is awaiting administrative authorization.");
-                    
+                    if (user.s !== "active") return alert("ACCESS DENIED: Awaiting approval.");
                     this.currentUser = u;
                     document.getElementById('auth-gate').classList.add('hidden');
-                    document.getElementById('sidebar').classList.remove('hidden');
                     document.getElementById('main-view').classList.remove('hidden');
-                    document.getElementById('display-user').innerText = u.toUpperCase();
-                    
+                    document.getElementById('display-user').innerText = "User: " + u.toUpperCase();
                     this.initializeConfigUI();
                     this.renderRecords();
                 } else {
-                    alert("SECURITY ERROR: Invalid identity or password.");
+                    alert("Invalid Credentials");
                 }
             },
 
             register() {
                 const u = document.getElementById('reg-u').value;
                 const p = document.getElementById('reg-p').value;
-                
-                if (!u || !p) return alert("VALIDATION ERROR: Please provide complete credentials.");
-                if (this.store.users.find(x => x.u === u)) return alert("CONFLICT: Identity already exists in registry.");
-                
+                if (!u || !p) return alert("Fill all fields");
                 this.store.users.push({ u, p, s: "pending" });
                 this.persist();
-                alert("SUCCESS: Request submitted. Administrative approval is required.");
+                alert("Request Sent!");
                 this.toggleAuth();
             },
 
-            /**
-             * NAVIGATION & ROUTING
-             */
             navigate(viewId) {
                 this.activeView = viewId;
-                this.cancelEdit(); // Reset form when switching views
-                
-                // Sidebar UI Update
+                this.cancelEdit();
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 document.getElementById('nav-' + viewId).classList.add('active');
                 
-                // Dynamic Title Logic
-                const titles = { 
-                    'T1': 'Unit 01 Management', 
-                    'T2': 'Unit 02 Management', 
-                    'T3': 'Unit 03 Management', 
-                    'ALL': 'Global Registry', 
-                    'USERS': 'System Authorization', 
-                    'DASH': 'System Analytics' 
-                };
+                const titles = { 'T1': 'Unit 01', 'T2': 'Unit 02', 'T3': 'Unit 03', 'ALL': 'Global Registry', 'USERS': 'User Access', 'DASH': 'Analytics' };
                 document.getElementById('view-title').innerText = titles[viewId];
 
-                // Section Visibility Control
                 document.getElementById('ui-form').classList.toggle('hidden', ['ALL','USERS','DASH'].includes(viewId));
                 document.getElementById('ui-table').classList.toggle('hidden', ['USERS','DASH'].includes(viewId));
                 document.getElementById('ui-users').classList.toggle('hidden', viewId !== 'USERS');
@@ -714,195 +449,134 @@
 
                 if (viewId === 'USERS') this.renderUserRegistry();
                 if (viewId === 'DASH') this.updateAnalytics();
-                
                 this.renderRecords();
+
+                // Close sidebar on mobile after clicking
+                if(window.innerWidth < 1024) this.toggleMobileSidebar();
             },
 
-            /**
-             * DATA OPERATIONS
-             */
             saveRecord() {
-                const street = document.getElementById('f-street').value;
-                const name = document.getElementById('f-name').value;
-
-                if (!street || !name) return alert("VALIDATION ERROR: Street and Identity fields are mandatory.");
-
                 const payload = {
-                    street: street,
+                    street: document.getElementById('f-street').value,
                     unit: document.getElementById('f-unit').value,
-                    name: name,
+                    name: document.getElementById('f-name').value,
                     status: document.getElementById('f-status').value,
                     lang: document.getElementById('f-lang').value,
                     remarks: document.getElementById('f-remarks').value,
                 };
 
+                if (!payload.street || !payload.name) return alert("Street and Name required");
+
                 if (this.editingId) {
-                    // UPDATE EXISTING RECORD
-                    const index = this.store.records.findIndex(r => r.id === this.editingId);
-                    if (index !== -1) {
-                        // Merge updates but keep original ID, territory, and creator
-                        this.store.records[index] = { 
-                            ...this.store.records[index], 
-                            ...payload 
-                        };
-                        alert("SUCCESS: Record updated successfully.");
-                    }
+                    const idx = this.store.records.findIndex(r => r.id === this.editingId);
+                    this.store.records[idx] = { ...this.store.records[idx], ...payload };
                 } else {
-                    // CREATE NEW RECORD
-                    this.store.records.push({
-                        ...payload,
-                        id: Date.now(),
-                        territory: this.activeView,
-                        creator: this.currentUser
-                    });
+                    this.store.records.push({ ...payload, id: Date.now(), territory: this.activeView, creator: this.currentUser });
                 }
 
                 this.persist();
                 this.renderRecords();
-                this.cancelEdit(); // Reset form and mode
+                this.cancelEdit();
             },
 
             editRecord(id) {
-                const record = this.store.records.find(r => r.id === id);
-                if (!record) return;
-
-                // Populate Form
-                document.getElementById('f-street').value = record.street;
-                document.getElementById('f-unit').value = record.unit;
-                document.getElementById('f-name').value = record.name;
-                document.getElementById('f-status').value = record.status;
-                document.getElementById('f-lang').value = record.lang;
-                document.getElementById('f-remarks').value = record.remarks;
-
-                // Set Edit State
+                const r = this.store.records.find(x => x.id === id);
+                document.getElementById('f-street').value = r.street;
+                document.getElementById('f-unit').value = r.unit;
+                document.getElementById('f-name').value = r.name;
+                document.getElementById('f-status').value = r.status;
+                document.getElementById('f-lang').value = r.lang;
+                document.getElementById('f-remarks').value = r.remarks;
                 this.editingId = id;
-                document.getElementById('btn-save').innerText = "Update Existing Record";
+                document.getElementById('btn-save').innerText = "Update Record";
                 document.getElementById('btn-cancel').style.display = "inline-flex";
-                
-                // Scroll to Form
-                document.getElementById('ui-form').scrollIntoView({ behavior: 'smooth' });
             },
 
             cancelEdit() {
-                // Clear Form
                 ['f-street', 'f-unit', 'f-name', 'f-remarks'].forEach(id => document.getElementById(id).value = '');
-                document.getElementById('f-status').selectedIndex = 0;
-                document.getElementById('f-lang').selectedIndex = 0;
-
-                // Reset State
                 this.editingId = null;
-                document.getElementById('btn-save').innerText = "Commit Record to Database";
+                document.getElementById('btn-save').innerText = "Save Record";
                 document.getElementById('btn-cancel').style.display = "none";
             },
 
             renderRecords(filteredSet = null) {
                 const container = document.getElementById('master-data-body');
                 container.innerHTML = '';
-                
                 const dataSet = filteredSet || (this.activeView === 'ALL' ? this.store.records : this.store.records.filter(r => r.territory === this.activeView));
                 
                 dataSet.forEach(r => {
                     const badgeClass = r.status === 'At Home' ? 'badge-success' : (r.status === 'Not at Home' ? 'badge-danger' : 'badge-warning');
-                    
-                    const row = `
+                    container.insertAdjacentHTML('beforeend', `
                         <tr>
                             <td>${r.street}</td>
                             <td>${r.unit}</td>
-                            <td style="font-weight:700;">${r.name}</td>
+                            <td><b>${r.name}</b></td>
                             <td><span class="badge ${badgeClass}">${r.status}</span></td>
                             <td>${r.lang}</td>
-                            <td><i style="color:var(--text-secondary)">${r.remarks || '--'}</i></td>
                             <td>
-                                <div style="display:flex; gap:8px;">
-                                    <button class="btn btn-edit-lite" style="padding: 6px 12px; font-size: 0.75rem;" onclick="portal.editRecord(${r.id})">Edit</button>
-                                    <button class="btn btn-danger-lite" style="padding: 6px 12px; font-size: 0.75rem;" onclick="portal.deleteRecord(${r.id})">Purge</button>
-                                </div>
+                                <button onclick="portal.editRecord(${r.id})" style="color:blue; background:none; border:none; cursor:pointer;">Edit</button> |
+                                <button onclick="portal.deleteRecord(${r.id})" style="color:red; background:none; border:none; cursor:pointer;">Del</button>
                             </td>
                         </tr>
-                    `;
-                    container.insertAdjacentHTML('beforeend', row);
+                    `);
                 });
             },
 
             deleteRecord(id) {
-                if (confirm("CRITICAL: Permanent deletion of record. Proceed?")) {
+                if(confirm("Delete?")) {
                     this.store.records = this.store.records.filter(r => r.id !== id);
-                    if (this.editingId === id) this.cancelEdit(); // If deleting the record currently being edited
                     this.persist();
                     this.renderRecords();
                 }
             },
 
-            /**
-             * USER MANAGEMENT
-             */
             renderUserRegistry() {
                 const container = document.getElementById('user-registry-body');
                 container.innerHTML = '';
-                
                 this.store.users.forEach(u => {
                     if (u.u === 'admin') return;
-                    
-                    const row = `
+                    container.insertAdjacentHTML('beforeend', `
                         <tr>
-                            <td style="font-weight:700;">${u.u}</td>
-                            <td><span class="badge ${u.s === 'active' ? 'badge-success' : 'badge-warning'}">${u.s.toUpperCase()}</span></td>
+                            <td>${u.u}</td>
+                            <td><span class="badge ${u.s === 'active' ? 'badge-success' : 'badge-warning'}">${u.s}</span></td>
                             <td>
-                                <button class="btn btn-primary" style="padding: 6px 12px; font-size: 0.7rem;" onclick="portal.modUserStatus('${u.u}', 'active')">Authorize</button>
-                                <button class="btn btn-danger-lite" style="padding: 6px 12px; font-size: 0.7rem;" onclick="portal.modUserStatus('${u.u}', 'del')">Revoke</button>
+                                <button class="btn btn-primary" style="padding:4px 8px;" onclick="portal.modUserStatus('${u.u}', 'active')">Approve</button>
+                                <button class="btn btn-ghost" style="padding:4px 8px; color:red;" onclick="portal.modUserStatus('${u.u}', 'del')">Remove</button>
                             </td>
                         </tr>
-                    `;
-                    container.insertAdjacentHTML('beforeend', row);
+                    `);
                 });
             },
 
             modUserStatus(username, action) {
-                if (action === 'del') {
-                    this.store.users = this.store.users.filter(u => u.u !== username);
-                } else {
-                    const target = this.store.users.find(u => u.u === username);
-                    if (target) target.s = 'active';
-                }
+                if (action === 'del') this.store.users = this.store.users.filter(u => u.u !== username);
+                else this.store.users.find(u => u.u === username).s = 'active';
                 this.persist();
                 this.renderUserRegistry();
             },
 
-            /**
-             * DYNAMIC CONFIGURATION
-             */
             initializeConfigUI() {
                 ['languages', 'statuses'].forEach(key => {
                     const select = document.getElementById(key === 'languages' ? 'f-lang' : 'f-status');
-                    select.innerHTML = this.store.config[key].map(opt => `<option value="${opt}">${opt}</option>`).join('') + `<option value="NEW">+ Define Custom</option>`;
+                    select.innerHTML = this.store.config[key].map(opt => `<option value="${opt}">${opt}</option>`).join('') + `<option value="NEW">+ Custom</option>`;
                 });
             },
 
             handleDynamicConfig(select, type) {
                 if (select.value === 'NEW') {
-                    const val = prompt(`Define new ${type.slice(0, -1)} entry:`);
+                    const val = prompt(`New ${type}:`);
                     if (val) {
                         this.store.config[type].push(val);
                         this.persist();
                         this.initializeConfigUI();
                         select.value = val;
-                    } else {
-                        select.selectedIndex = 0;
                     }
                 }
             },
 
-            /**
-             * SEARCH & ANALYTICS
-             */
             search(query) {
                 const q = query.toLowerCase();
-                const results = this.store.records.filter(r => 
-                    r.name.toLowerCase().includes(q) || 
-                    r.street.toLowerCase().includes(q) || 
-                    r.status.toLowerCase().includes(q)
-                );
-                this.renderRecords(results);
+                this.renderRecords(this.store.records.filter(r => r.name.toLowerCase().includes(q) || r.street.toLowerCase().includes(q)));
             },
 
             updateAnalytics() {
@@ -912,44 +586,25 @@
                 document.getElementById('val-all').innerText = this.store.records.length;
             },
 
-            /**
-             * EXPORT
-             */
             exportCSV() {
-                let csv = "TERRITORY_UNIT,STREET,UNIT_NO,RESIDENT_NAME,STATUS,LANGUAGE,REMARKS,CREATOR\n";
-                this.store.records.forEach(r => {
-                    csv += `"${r.territory}","${r.street}","${r.unit}","${r.name}","${r.status}","${r.lang}","${r.remarks}","${r.creator}"\n`;
-                });
+                let csv = "TERRITORY,STREET,UNIT,NAME,STATUS,LANG,REMARKS\n";
+                this.store.records.forEach(r => csv += `"${r.territory}","${r.street}","${r.unit}","${r.name}","${r.status}","${r.lang}","${r.remarks}"\n`);
                 const blob = new Blob([csv], { type: 'text/csv' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
-                a.setAttribute('href', url);
-                a.setAttribute('download', `G4_MASTER_DATABASE_${new Date().getTime()}.csv`);
+                a.href = url;
+                a.download = `G4_Report.csv`;
                 a.click();
             },
 
-            /**
-             * PERSISTENCE LAYER
-             */
             persist() {
                 localStorage.setItem('g4_enterprise_core', JSON.stringify(this.store));
             }
         };
 
-        // Automatic System Refresh (Prevents Legacy Data Conflict)
-        if (!localStorage.getItem('g4_master_v4.1')) {
-            // Updated version key to force clear on update if needed, but keeping data safer
-            // Commenting out clear to preserve data across version update if structure matches
-            // localStorage.clear(); 
-            localStorage.setItem('g4_master_v4.1', 'initialized');
-        }
-
-        // Live Clock Daemon
         setInterval(() => {
-            const now = new Date();
-            document.getElementById('live-clock').innerText = now.toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
+            document.getElementById('live-clock').innerText = new Date().toLocaleTimeString();
         }, 1000);
-
     </script>
 </body>
 </html>
